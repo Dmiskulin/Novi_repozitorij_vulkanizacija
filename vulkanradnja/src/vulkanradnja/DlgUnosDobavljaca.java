@@ -100,8 +100,8 @@ public class DlgUnosDobavljaca extends JDialog {
 						try {						
 						 	  Class.forName("com.mysql.cj.jdbc.Driver") .newInstance();
 							  Connection conn = DriverManager.getConnection (
-								"jdbc:mysql://ucka.veleri.hr/mmihajic?" +
-								"user=mmihajic&password=11");
+									  "jdbc:mysql://ucka.veleri.hr/dmiskulin?" +
+												"user=dmiskulin&password=11");
 							  
 							  String sql = "INSERT INTO Dobavljac VALUES(?,?,?);";
 							  

@@ -86,8 +86,8 @@ public class DlgPregledDobavljaca extends JDialog {
 	private void selectPregledDobavljaca() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/mmihajic?" +
-				                                   "user=mmihajic&password=11");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://ucka.veleri.hr/dmiskulin?" +
+                    "user=dmiskulin&password=11");
 			
 			String sql = "SELECT * FROM Dobavljac";
 			Statement stmt = conn.createStatement();
@@ -95,8 +95,8 @@ public class DlgPregledDobavljaca extends JDialog {
 			String tekst = "";
 			while (rs.next()) {
 				tekst += "Naziv: "+rs.getString("naziv")+"\t";				
-				tekst += "Email: "+rs.getString("email")+"\t"+"\t";
-				tekst += "ID: "+rs.getString("IdDo")+"\n";
+				tekst += "Email: "+rs.getString("email")+"\t";
+				tekst += "ID: "+rs.getString("idDo")+"\n";
 				
 			}	
 			textAreaPregled.setText(tekst);
