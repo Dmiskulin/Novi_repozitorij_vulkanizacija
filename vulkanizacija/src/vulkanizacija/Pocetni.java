@@ -52,7 +52,13 @@ public class Pocetni {
 		JMenu mnNewMenu = new JMenu("Artikli");
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Pregled artikala");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Popis artikala");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DlgPopisArtikala dlg = new DlgPopisArtikala();
+				dlg.setVisible(true);
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Dodaj artikal");
