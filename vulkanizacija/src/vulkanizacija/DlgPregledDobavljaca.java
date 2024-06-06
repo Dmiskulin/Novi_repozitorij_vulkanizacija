@@ -1,4 +1,4 @@
-package vulkanradnja;
+package vulkanizacija;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
