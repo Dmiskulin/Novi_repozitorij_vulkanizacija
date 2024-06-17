@@ -1,4 +1,4 @@
-package vulkanizacija;
+package vulkanizacija2;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -51,14 +51,14 @@ public class DlgArtikliRacuna extends JDialog {
      * Create the dialog.
      */
     public DlgArtikliRacuna() {
-        setTitle("Artikli računa");
+        setTitle("Artikli raÄŤuna");
         setBounds(100, 100, 600, 400);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(null);
 
-        JLabel lblBrojRacuna = new JLabel("Broj računa:");
+        JLabel lblBrojRacuna = new JLabel("Broj raÄŤuna:");
         lblBrojRacuna.setBounds(20, 20, 100, 20);
         contentPanel.add(lblBrojRacuna);
 
@@ -75,7 +75,7 @@ public class DlgArtikliRacuna extends JDialog {
         listArtikli.setBounds(20, 90, 350, 200);
         contentPanel.add(listArtikli);
 
-        JLabel lblSifraArtikla = new JLabel("Šifra artikla:");
+        JLabel lblSifraArtikla = new JLabel("Ĺ ifra artikla:");
         lblSifraArtikla.setBounds(380, 90, 70, 20);
         contentPanel.add(lblSifraArtikla);
 
@@ -84,11 +84,11 @@ public class DlgArtikliRacuna extends JDialog {
         contentPanel.add(textFieldSifraArtikla);
         textFieldSifraArtikla.setColumns(10);
 
-        JLabel lblKolicina = new JLabel("Količina:");
+        JLabel lblKolicina = new JLabel("KoliÄŤina:");
         lblKolicina.setBounds(380, 120, 70, 20);
         contentPanel.add(lblKolicina);
 
-        textFieldKolicina = new JTextField("1"); // Početna vrijednost količine postavljena na 1
+        textFieldKolicina = new JTextField("1"); // PoÄŤetna vrijednost koliÄŤine postavljena na 1
         textFieldKolicina.setBounds(450, 120, 100, 20);
         contentPanel.add(textFieldKolicina);
         textFieldKolicina.setColumns(10);
@@ -108,22 +108,22 @@ public class DlgArtikliRacuna extends JDialog {
         // Load items into the listArtikli
         loadArtikli();
 
-        // Listener for list selection to update Šifra artikla and Cijena
+        // Listener for list selection to update Ĺ ifra artikla and Cijena
         listArtikli.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
                     String selectedValue = listArtikli.getSelectedValue();
                     if (selectedValue != null) {
                         String[] parts = selectedValue.split(" - ");
-                        String sifraArtikla = parts[0]; // Prva komponenta je šifra artikla
+                        String sifraArtikla = parts[0]; // Prva komponenta je Ĺˇifra artikla
                         String cijenaArtiklaStr = parts[parts.length - 1]; // Zadnja komponenta je cijena artikla
                         try {
                             double cijenaArtikla = Double.parseDouble(cijenaArtiklaStr);
                             textFieldSifraArtikla.setText(sifraArtikla);
-                            updateCijena(cijenaArtikla); // Ažuriranje cijene na temelju odabranog artikla
+                            updateCijena(cijenaArtikla); // AĹľuriranje cijene na temelju odabranog artikla
                         } catch (NumberFormatException ex) {
                             JOptionPane.showMessageDialog(null, "Neispravni podaci o artiklu",
-                                    "Greška", JOptionPane.ERROR_MESSAGE);
+                                    "GreĹˇka", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                 }
@@ -138,10 +138,10 @@ public class DlgArtikliRacuna extends JDialog {
                     String cijenaArtiklaStr = parts[parts.length - 1]; // Zadnja komponenta je cijena artikla
                     try {
                         double cijenaArtikla = Double.parseDouble(cijenaArtiklaStr);
-                        updateCijena(cijenaArtikla); // Ažuriranje cijene na temelju količine
+                        updateCijena(cijenaArtikla); // AĹľuriranje cijene na temelju koliÄŤine
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Neispravni podaci o artiklu",
-                                "Greška", JOptionPane.ERROR_MESSAGE);
+                                "GreĹˇka", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -187,7 +187,7 @@ public class DlgArtikliRacuna extends JDialog {
             conn.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,
-                    ex.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
+                    ex.getMessage(), "GreĹˇka", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -213,7 +213,7 @@ public class DlgArtikliRacuna extends JDialog {
             conn.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,
-                    ex.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
+                    ex.getMessage(), "GreĹˇka", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -223,8 +223,8 @@ public class DlgArtikliRacuna extends JDialog {
             double cijena = kolicina * cijenaArtikla;
             textFieldCijena.setText(String.valueOf(cijena));
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Neispravna vrijednost za količinu",
-                    "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Neispravna vrijednost za koliÄŤinu",
+                    "GreĹˇka", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -248,16 +248,16 @@ public class DlgArtikliRacuna extends JDialog {
             stmt.setDouble(4, cijenaArtikla);
             stmt.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Artikl uspješno spremljen na račun!",
+            JOptionPane.showMessageDialog(null, "Artikl uspjeĹˇno spremljen na raÄŤun!",
                     "Info", JOptionPane.INFORMATION_MESSAGE);
 
             conn.close();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Neispravni podaci za spremanje artikla",
-                    "Greška", JOptionPane.ERROR_MESSAGE);
+                    "GreĹˇka", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,
-                    ex.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
+                    ex.getMessage(), "GreĹˇka", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
