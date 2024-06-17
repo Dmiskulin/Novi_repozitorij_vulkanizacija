@@ -24,9 +24,9 @@ public class DlgNoviRacun extends JDialog {
     private static final long serialVersionUID = 1L;
     private final JPanel contentPanel = new JPanel();
     private JTextField textFieldBroj;
-    private JTextField textFieldPlacanje;
     private JTextField textFieldDatum;
     private JComboBox<String> comboBoxDjelatnik;
+    private JComboBox<String> comboBoxPlacanje;
 
     /**
      * Launch the application.
@@ -78,11 +78,12 @@ public class DlgNoviRacun extends JDialog {
         contentPanel.add(textFieldBroj);
         textFieldBroj.setColumns(10);
 
-        textFieldPlacanje = new JTextField();
-        textFieldPlacanje.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        textFieldPlacanje.setBounds(190, 85, 100, 20);
-        contentPanel.add(textFieldPlacanje);
-        textFieldPlacanje.setColumns(10);
+        comboBoxPlacanje = new JComboBox<>();
+        comboBoxPlacanje.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        comboBoxPlacanje.setBounds(190, 85, 200, 20);
+        comboBoxPlacanje.addItem("Gotovinsko");
+        comboBoxPlacanje.addItem("Kartično");
+        contentPanel.add(comboBoxPlacanje);
 
         textFieldDatum = new JTextField();
         textFieldDatum.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -105,7 +106,7 @@ public class DlgNoviRacun extends JDialog {
         btnNewButton.setBounds(155, 181, 115, 25);
         contentPanel.add(btnNewButton);
 
-        // Popunjavanje JComboBoxa podacima o djelatnicima
+        // COMBO BOX
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             Connection conn = DriverManager.getConnection(
@@ -135,7 +136,7 @@ public class DlgNoviRacun extends JDialog {
             okButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String brojRacuna = textFieldBroj.getText();
-                    String vrstaPlacanja = textFieldPlacanje.getText();
+                    String vrstaPlacanja = (String) comboBoxPlacanje.getSelectedItem();
                     String datum = textFieldDatum.getText();
                     String djelatnik = (String) comboBoxDjelatnik.getSelectedItem();
 
@@ -158,9 +159,9 @@ public class DlgNoviRacun extends JDialog {
                             conn.close();
 
                             textFieldBroj.setText("");
-                            textFieldPlacanje.setText("");
                             textFieldDatum.setText("");
                             comboBoxDjelatnik.setSelectedIndex(0);
+                            comboBoxPlacanje.setSelectedIndex(0);
 
                             JOptionPane.showMessageDialog(null,
                                 "Račun uspješno spremljen!", "Informacija",
